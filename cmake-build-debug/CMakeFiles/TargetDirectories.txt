@@ -1,0 +1,3 @@
+C:/Users/16335607751/Documents/Material Faculdade/Segundo semestre/Intro. Progr/C/cmake-build-debug/CMakeFiles/C.dir
+C:/Users/16335607751/Documents/Material Faculdade/Segundo semestre/Intro. Progr/C/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/16335607751/Documents/Material Faculdade/Segundo semestre/Intro. Progr/C/cmake-build-debug/CMakeFiles/rebuild_cache.dir
