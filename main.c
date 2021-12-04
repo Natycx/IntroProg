@@ -359,18 +359,230 @@ int desafio20(){
 }
 
 int desafio21(){
-    int x;
+    int x, h, m, s;
 
     scanf("%d", &x);
 
-    
+    h = x /3600;
+    x-= h * 3600;
+    m = x / 60;
+    x -= m * 60;
+
+    printf("%d:%d:%d\n", h, m, x);
 
     return 0;
 }
 
+int desafio22(){
+
+    int x, y;
+    double tabela[5] = {4.00, 4.50, 5.00, 2.00, 1.50};
+
+    scanf("%d%d", &x, &y);
+
+    double total = tabela[x - 1] * y;
+
+    printf("Total: R$ %.2lf", total);
+
+    return 0;
+}
+
+int desafio23(){
+    double x,y;
+
+    scanf("%lf%lf", &x, &y);
+
+    if(x == 0 && y == 0){
+        printf("Origem");
+    } else if(x > 0 && y > 0){
+        printf("Q1");
+    } else if(x < 0 && y > 0){
+        printf("Q2");
+    } else if (x < 0 && y < 0){
+        printf("Q3");
+    } else{
+        printf("Q4");
+    }
+
+
+    return 0;
+}
+
+int desafio24(){
+    double x, y;
+    int total = 0;
+
+    scanf("%lf", &x);
+
+    for(int i = 0; i < x; ++i){
+        scanf("%lf", &y);
+        if(y > 0){
+            total += 1;
+        }
+    }
+    printf("%d valores positivos\n", total);
+
+    return 0;
+}
+
+int desafio25(){
+    double x, y;
+    int total = 0;
+    double media = 0;
+
+    scanf("%lf", &x);
+
+    for(int i = 0; i < x; ++i){
+        scanf("%lf", &y);
+        if(y > 0){
+            total += 1;
+            media += y;
+        }
+    }
+    double resultado = media / total;
+    printf("%d valores positivos\n", total);
+    printf("%.1lf\n", resultado);
+
+    return 0;
+}
+
+int desafio26(){
+    int x, total = 0;
+
+    for(int i = 0; i < 5; ++i){
+        scanf("%d", &x);
+        if(x % 2 == 0){
+            total += 1;
+        }
+    }
+    printf("%d valores pares\n", total);
+
+    return 0;
+}
+
+int desafio27(){
+    int x, pares = 0, impares =0, positivo = 0, negativo =0;
+
+    for(int i = 0; i < 5; ++i){
+        scanf("%d", &x);
+
+        if(x % 2 == 0){
+            pares += 1;
+        } else {
+            impares += 1;
+        }
+        if(x > 0){
+            positivo += 1;
+        } else if(x < 0){
+            negativo += 1;
+        }
+    }
+    printf("%d valor(es) par(es)\n", pares);
+    printf("%d valor(es) impar(es)\n", impares);
+    printf("%d valor(es) positivo(s)\n", positivo);
+    printf("%d valor(es) negativo(s)\n", negativo);
+
+    return 0;
+}
+
+int desafio28(){
+    int x = 0, y;
+
+    while (x < 1 || x > 1000){
+        scanf("%d", &y);
+        x += y;
+    }
+    for(int i =0; i <= x; ++i){
+        if(i % 2 != 0){
+            printf("%d\n", i);
+        }
+    }
+
+
+    return 0;
+}
+
+int desafio29(){
+    int x;
+
+    scanf("%d", &x);
+
+    int contador = 0;
+    while (contador < 6){
+        if(x % 2 != 0){
+            printf("%d\n", x);
+            contador += 1;
+        }
+        x += 1;
+    }
+
+
+    return 0;
+}
+
+int desafio30(){
+    int x, y;
+
+    scanf("%d%d", &x, &y);
+
+    int soma = 0;
+
+    for(int i = x; i < y; ++i){
+        if(i%2!=0){
+            soma += i;
+        }
+    }
+
+    printf("%d", soma);
+
+    return 0;
+}
+
+int desafio31(){
+    int n;
+
+    scanf("%d", &n);
+    int y, in = 0, out = 0;
+
+    for(int i = 0; i < n; ++i){
+        scanf("%d", &y);
+        if(y >= 10 && y <= 20){
+            in += 1;
+        } else{
+            out += 1;
+        }
+
+    }
+    printf("%d in\n%d out", in, out);
+
+    return 0;
+}
+
+int desafio32(){
+    int n;
+
+    scanf("%d", &n);
+
+    for(int i = 1; i <= n; ++i){
+        if(i % 2 == 0){
+            int pot = i * i;
+            printf("%d^2 = %d\n", i, pot);
+        }
+    }
+
+    return 0;
+}
+
+int desafio33(){
+    
+
+
+
+    return 0;
+}
 
 int main() {
-    return desafio20();
+    return desafio32();
 
 
 }
