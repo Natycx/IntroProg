@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 int soma(int x, int y){
     return x + y;
@@ -574,13 +575,78 @@ int desafio32(){
 }
 
 int desafio33(){
-    
+    int n;
+    scanf("%d", &n);
 
+    int p, q;
+    char c;
 
+    scanf("%d %c%d", &p, &c, &q);
+
+    int r;
+
+    if (c == '+')
+        r = p + q;
+    else
+        r = p * q;
+
+    if (r > n)
+        printf("OVERFLOW\n");
+    else
+        puts("OK");
 
     return 0;
 }
 
+
+int desafio34(){
+    char uma_jogada[8] = "tesoura";
+
+    char uma_regra[2][8] = {"tesoura", "papel"};
+
+    char regras[10][2][8] = {
+            {"tesoura", "papel"},
+            {"papel", "pedra"},
+            {"pedra", "lagarto"},
+            {"lagarto", "Spock"},
+            {"Spock", "tesoura"},
+            {"tesoura", "lagarto"},
+            {"lagarto", "papel"},
+            {"papel", "Spock"},
+            {"Spock", "pedra"},
+            {"pedra", "tesoura"},
+    };
+
+    int t;
+
+    scanf("%d", &t);
+
+    char sheldon[8] = "xyz", raj[8] = "abc";
+
+    for(int i = 0; i < t; ++i) {
+        printf("Caso #%d: ", i+1);
+
+        scanf("%s%s", sheldon, raj);
+
+        if (strcmp(sheldon, raj) == 0) {
+            puts("De novo!");
+            continue;
+        }
+
+        int sheldon_ganhou = 0;
+
+        for(int j = 0; j < 10; ++j)
+            if (strcmp(sheldon, regras[j][0]) == 0 && strcmp(raj, regras[j][1]) == 0)
+                sheldon_ganhou = 1;
+
+        if (sheldon_ganhou)
+            puts("Bazinga!");
+        else
+            puts("Raj trapaceou!");
+    }
+
+    return 0;
+}
 int main() {
     return desafio32();
 
