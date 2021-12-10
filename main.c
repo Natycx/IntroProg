@@ -647,8 +647,148 @@ int desafio34(){
 
     return 0;
 }
+int numero_leds(char d) {
+
+    int numleds[10] = {6, 2, 5, 5, 4, 5, 6, 3, 7, 6};
+
+    return numleds[d - '0'];
+}
+int num_leds(char d){
+    if(d == '1'){
+        return 2;
+    }
+    if(d == '2'){
+        return 5;
+    }
+    if(d == '3'){
+        return 5;
+    }
+    if(d == '4'){
+        return 4;
+    }
+    if(d == '5'){
+        return 5;
+    }
+    if(d == '6'){
+        return 6;
+    }
+    if(d == '7'){
+        return 3;
+    }
+    if(d == '8'){
+        return 7;
+    }
+    if(d == '9'){
+        return 6;
+    }
+
+    return 6;
+}
+
+
+int desafio1168(){
+    char x[] = "abc123";
+    printf("%s\n", x);
+    printf("%c %c\n", x[0], x[3]);
+    printf("%d %d\n", x[0], x[3]);
+
+    for(int i = 0; x[i] != '\0'; ++i){
+        printf("%c %d\n", x[i], x[i]);
+    }
+
+    int n;
+
+    scanf("%d", &n);
+
+    char num[102];
+
+    for(int i =0; i < n; ++i){
+        scanf("%s", num);
+
+        int total = 0;
+        int total_len = strlen(num);
+
+        for(int j = 0; total_len != '\0' ; ++j){
+            char digito = num[j];
+            total += numero_leds(num[j]);
+        }
+        printf("%d leds", total);
+    }
+
+    return 0;
+}
+
+int desafio1253(){
+    int n, x;
+    char msg[51];
+    scanf("%d", &n);
+    for(int i = 0; i < n; ++i) {
+        scanf("%s%d", msg, &x);
+
+        for(int j = 0; msg[j] != '\0'; ++j) {
+            char original = msg[j] - x;
+            printf("%c", original);
+        }
+
+        printf("\n");
+    }
+    return 0;
+}
+
+int desafio1024(){
+    int n, tam;
+    char str[51];
+
+    scanf("%d", &n);
+
+    for(int i = 0; i < n; ++i){
+        getchar();
+        gets(str);
+        tam = strlen(str);
+        for(int j = 0;str[j] != '\0'; ++j){
+            if((str[j]>='A' && str[j]<='Z') || (str[j]>='a' && str[j]<='z')){
+                str[j] = str[j] + 3;
+            }
+        }
+    }
+    for(int i =0; i < tam/2; ++i){
+        char temp = str[i];
+        str[i] = str[tam - i -1];
+        str[tam - i - 1] = temp;
+
+    }
+    for(int i = tam /2; i < tam; ++i){
+        str[i] = str[i] - 1;
+    }
+    printf("%s\n", str);
+
+    return 0;
+}
+
+int desafio1173(){
+    int n, vetor[10];
+
+    scanf("%d", &n);
+
+    for(int i = 0; i < 10; ++i){
+        vetor[i] = n;
+        printf("N[%d] = %d\n", i, vetor[i]);
+        n *= 2;
+
+    }
+
+    return 0;
+}
+
+int desafio1175(){
+
+
+
+    return 0;
+}
+
 int main() {
-    return desafio32();
+    return desafio1173();
 
 
 }
