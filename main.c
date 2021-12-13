@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include <ctype.h>
 
 int soma(int x, int y){
     return x + y;
@@ -737,30 +738,30 @@ int desafio1253(){
 
 int desafio1024(){
     int n, tam;
-    char str[51];
+    char str[1123], inversao[1123];
 
-    scanf("%d", &n);
+    scanf("%d%*c", &n);
 
-    for(int i = 0; i < n; ++i){
-        getchar();
-        gets(str);
-        tam = strlen(str);
-        for(int j = 0;str[j] != '\0'; ++j){
-            if((str[j]>='A' && str[j]<='Z') || (str[j]>='a' && str[j]<='z')){
-                str[j] = str[j] + 3;
-            }
+    for(int i = 0; i < n; ++i) {
+        fgets(str, 1123, stdin);
+
+        int len = 0;
+
+        for (int j = 0; str[j] != '\n' && str[j] != '\0'; ++j) {
+            //if((str[j]>='A' && str[j]<='Z') || (str[j]>='a' && str[j]<='z')){
+            len++;
+            if (isalpha(str[j]))
+                str[j] += 3;
         }
-    }
-    for(int i =0; i < tam/2; ++i){
-        char temp = str[i];
-        str[i] = str[tam - i -1];
-        str[tam - i - 1] = temp;
 
+        for (int j = 0; j < len; ++j) {
+            inversao[len - 1 - j] = str[j];
+        }
+        inversao[len] = '\0';
+        for(int j = len/2; inversao[j]; ++j)
+            --inversao[j];
+        printf("%s\n", inversao);
     }
-    for(int i = tam /2; i < tam; ++i){
-        str[i] = str[i] - 1;
-    }
-    printf("%s\n", str);
 
     return 0;
 }
@@ -787,8 +788,30 @@ int desafio1175(){
     return 0;
 }
 
+int exemplos_entradas(){
+    char nome_completo[101];
+    //scanf("%[3A-Za-z ]", nome_completo);
+
+    for(;;)//white(1) equivale ao while true de python{
+        if(scanf(" %[^\n]%*c", nome_completo) == EOF){
+            break;
+        }
+        //if(fgets(nome_completo, 101, stdin) == NULL){
+            //break;
+        //}
+
+        //int len = strlen(nome_completo);
+        //nome_completo[len - 1] = '\0';
+        printf("O nome lido e: %s", nome_completo);
+        printf("");
+        // ctrl + d fim de arquivo
+
+    return 0;
+}
+
+
 int main() {
-    return desafio1173();
+    return desafio1024();
 
 
 }
