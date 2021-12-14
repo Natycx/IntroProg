@@ -719,22 +719,6 @@ int desafio1168(){
     return 0;
 }
 
-int desafio1253(){
-    int n, x;
-    char msg[51];
-    scanf("%d", &n);
-    for(int i = 0; i < n; ++i) {
-        scanf("%s%d", msg, &x);
-
-        for(int j = 0; msg[j] != '\0'; ++j) {
-            char original = msg[j] - x;
-            printf("%c", original);
-        }
-
-        printf("\n");
-    }
-    return 0;
-}
 
 int desafio1024(){
     int n, tam;
@@ -809,9 +793,69 @@ int exemplos_entradas(){
     return 0;
 }
 
+int desafio1253(){
+    int testes, deslocamento;
+    int i, j;
 
+    scanf("%d", &testes);
+
+    for (i = 0; i < testes; i++)
+    {
+        char palavra[50], letra;
+        scanf("%s", palavra);
+        scanf("%d", &deslocamento);
+
+        for (j = 0; j < strlen(palavra); j++)
+        {
+            if (palavra[j] - deslocamento < 'A')
+            {
+                letra = '[' - (deslocamento - (palavra[j] - 'A'));
+                printf("%c", letra);
+            }
+            else
+            {
+                letra = palavra[j] - deslocamento;
+                printf("%c", letra);
+            }
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+
+int teste(){
+
+    unsigned short testes, deslocamento;
+    unsigned short i, j;
+
+    scanf("%hd", &testes);
+
+    for (i = 0; i < testes; i++)
+    {
+        char palavra[50], letra;
+        scanf("%s", palavra);
+        scanf("%hd", &deslocamento);
+
+        for (j = 0; j < strlen(palavra); j++)
+        {
+            if (palavra[j] - deslocamento < 'A')
+            {
+                letra = '[' - (deslocamento - (palavra[j] - 'A'));
+                printf("%c", letra);
+            }
+            else
+            {
+                letra = palavra[j] - deslocamento;
+                printf("%c", letra);
+            }
+        }
+        printf("\n");
+    }
+    return 0;
+}
 int main() {
-    return desafio1024();
+    return desafio1253();
 
 
 }
