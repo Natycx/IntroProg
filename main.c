@@ -823,39 +823,56 @@ int desafio1253(){
     return 0;
 }
 
+int desafio1120(){
+    char number[102], digit;
 
-int teste(){
+    for(;;){
+        scanf("%c%*c", &digit);
 
-    unsigned short testes, deslocamento;
-    unsigned short i, j;
+        fgets(number, 102, stdin);
 
-    scanf("%hd", &testes);
+        int len = strlen(number);
 
-    for (i = 0; i < testes; i++)
-    {
-        char palavra[50], letra;
-        scanf("%s", palavra);
-        scanf("%hd", &deslocamento);
-
-        for (j = 0; j < strlen(palavra); j++)
-        {
-            if (palavra[j] - deslocamento < 'A')
-            {
-                letra = '[' - (deslocamento - (palavra[j] - 'A'));
-                printf("%c", letra);
-            }
-            else
-            {
-                letra = palavra[j] - deslocamento;
-                printf("%c", letra);
+        if(number[len - 1] == '\n'){
+            number[len - 1] = '\0';
+            --len;
+        }
+        if(strcmp(number, "0") == 0 && digit == '0'){
+            break;
+        }
+        for(int i =0; i < len; i++){
+            if(number[i] == digit){
+                for(int j = i; j < len; j++){
+                    number[j] = number[j + 1];
+                }
+                len--;
+                i--;
             }
         }
-        printf("\n");
+        len = strlen(number);
+        for(int i = 0; number[i] == '0'; ++i){
+            if(number[i] == '0'){
+                for(int j = i; j < len; j++){
+                    number[j] = number[j + 1];
+                }
+                len--;
+                i--;
+            }
+        }
+        if(strcmp(number, "") == 0){
+            printf("0\n");
+        } else{
+            printf("%s\n", number);
+        }
     }
+
+
+
     return 0;
 }
+
 int main() {
-    return desafio1253();
+    return desafio1120();
 
 
 }
