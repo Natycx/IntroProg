@@ -871,8 +871,77 @@ int desafio1120(){
     return 0;
 }
 
+int aula15_12_21(){
+    //int x = 5;
+
+    //for(int i = 0; i <= 10; ++i){
+        //printf("5 * (2 ** %d) = %d\n", i, 5 << i); // shift left
+    //}
+    //for(int i = 0; i <= 10; ++i){
+        //printf("123 / (2 ** %d) = %d\n", i , 123 >> i); // shift right
+    //}
+    //printf("%d %d %d\n", 12 & 5, 12 | 5, 12 ^ 5);
+    /*
+    int n;
+    scanf("%d", &n);
+
+    if((n & 1) == 1){
+        puts("Impar");
+    } else
+        puts("Par");
+
+    int nbits;
+
+    for(int i = 0;; ++i){
+        if((n >> i) == 0){
+            nbits = i;
+            break;
+        }
+    }
+    printf("O numero possui %d bits\n", nbits);
+
+    char bits[nbits + 1];
+    bits[nbits] = '\0';
+
+    for(int i = 0; i < nbits; ++i){
+        int n_linha = n >> i;
+        bits[nbits - 1 - i] = '0' + (n_linha & 1);
+
+
+        if((n_linha & 1) == 0){
+
+        } else{
+
+    }
+
+    }
+    puts(bits);
+
+
+    char bits[31];
+
+    scanf("%s", bits);
+    int len = strlen(bits);
+
+    int resultado = 0;
+
+    for(int i = 0; i < len; ++i){
+        int bit = bits[i] - '0';
+
+        resultado += bit * (1<< (len - 1 -i));
+    }
+    printf("%d\n", resultado);
+     */
+    int z = 3000000000;
+    int x = 2147483647;
+
+    printf("%d %d %d", x, x+1, z);
+
+    return 0;
+}
+
 int main() {
-    return desafio1120();
+    return aula15_12_21();
 
 
 }
