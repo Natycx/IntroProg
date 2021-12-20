@@ -932,16 +932,80 @@ int aula15_12_21(){
     }
     printf("%d\n", resultado);
      */
-    int z = 3000000000;
+
     int x = 2147483647;
 
-    printf("%d %d %d", x, x+1, z);
+    printf("%d %d", x, x+1);
 
     return 0;
 }
 
+int desafio1018(){
+    int n;
+
+    scanf("%d", &n);
+
+    int nota100 = n / 100;
+    int resto = n % 100;
+    int nota50 = resto / 50;
+    int resto2 = resto % 50;
+    int nota20 = resto2 / 20;
+    int resto3 = resto2 % 20;
+    int nota10 = resto3 / 10;
+    int resto4 = resto3 % 10;
+    int nota5 = resto4 / 5;
+    int resto5 = resto4 % 5;
+    int nota2 = resto5 / 2;
+    int resto6 = resto5 % 2;
+    int nota1 = resto6;
+
+
+    printf("%d nota(s) de R$ 100,00\n", nota100);
+    printf("%d nota(s) de R$ 50,00\n", nota50);
+    printf("%d nota(s) de R$ 20,00\n", nota20);
+    printf("%d nota(s) de R$ 10,00\n", nota10);
+    printf("%d nota(s) de R$ 5,00\n", nota5);
+    printf("%d nota(s) de R$ 2,00\n", nota2);
+    printf("%d nota(s) de R$ 1,00\n", nota1);
+
+
+    return 0;
+}
+
+int desafio1020(){
+    int n;
+
+    scanf("%d", &n);
+
+    int ano = n / 365;
+    int resto1 = n % 365;
+    int mes = resto1 / 30;
+    int dias = resto1 % 30;
+
+    printf("%d ano(s)\n", ano);
+    printf("%d mes(es)\n", mes);
+    printf("%d dia(s)\n", dias);
+
+
+    return 0;
+}
+
+int desafio1222(){
+    char vetor[50];
+
+    scanf("%s");
+
+
+
+
+    return 0;
+}
+
+
+
+
 int main() {
-    return aula15_12_21();
+    return desafio1020();
 
 
 }
