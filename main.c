@@ -1001,11 +1001,65 @@ int desafio1222(){
     return 0;
 }
 
+int aula24_12(){
+    int x = -2147483647;
+    int y = x + 1;
 
+    printf("%d %d \n", x, y);
+
+    int tamanho;
+    char num[33];
+
+    for(tamanho = 0;(x >> tamanho) != 0; ++tamanho){
+        printf("%d: %d\n", tamanho, (x >> tamanho));
+        num[tamanho] = '0' + ((x >> tamanho) & 1);
+    }
+    for(int j = 0; j < tamanho; ++j){
+        printf("%c", num[tamanho - j - 1]);
+    }
+    printf("\nTamanho: %d\n", tamanho);
+
+    return 0;
+
+
+}
+
+int aula24_12_21(){
+    /*
+    char a[] = "12341234123412341234123412341234123412341234123412341234123412341234123412341234123412341234123412341234123412341234123412341234";
+    char b[] = "01230123012301230123012301230123012301230123012301230123012301230123012301230123012301230123012301230123012301230123012301230123";
+    char c[130];
+    for(int i = 0; i < 128; ++i){
+        c[i] = (a[i] - '0') + (b[i] - '0') + '0';
+    }
+
+    c[128] = '\0';
+    puts(c);
+
+    unsigned int x = 1 << 31; // Valores entre 0 e 2**32 -1
+
+    printf("%u\n", x);
+
+    long long int y = 1ll << 62; //64 bit(1 bit pra sinal, 63 pro valor) Aceita valores que vão de -2**63 até 2**63 - 1
+
+    printf("%lld\n", y);
+
+    unsigned long long int z = 1ull << 63; // 64 bits (64 pro valor) valores de 0 a 2**64-1
+
+    printf("%llu", z);
+    */
+    short int s = 1<< 15 -1; // só tem 16 bits (1 pro sinal, 15 para valor) valores -2**15 a 2**15 -1
+
+    printf("%d\n", s);
+
+    char t = (1 << 7) - 1; // 8 bits (1 pra sinal, 7 para valor) valores -2**7 a 2**7 - 1
+
+    return 0;
+}
 
 
 int main() {
-    return desafio1020();
+    return aula24_12_21();
 
 
 }
