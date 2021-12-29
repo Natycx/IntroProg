@@ -2,6 +2,7 @@
 #include <math.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 int soma(int x, int y){
     return x + y;
@@ -1057,9 +1058,176 @@ int aula24_12_21(){
     return 0;
 }
 
+void produtoInterno(int *a, int *b, int *c, int tamanho){
+
+    for(int i =0; i< tamanho; ++i){
+        c[i] = a[i] * b[i];
+
+    }
+
+}
+
+void somaVetorial(int *a, int *b, int *c, int tamanho){
+
+    for(int i =0; i< tamanho; ++i){
+        c[i] = a[i] + b[i];
+
+    }
+
+}
+
+void operacaoXVetorial(int *a, int *b, int *c, int tamanho){
+
+    for(int i =0; i< tamanho; ++i){
+        c[i] = (a[i] - b[i]) * (a[i] + b[i]);
+
+    }
+
+}
+
+int prod2(int a, int b){
+    return a*b;
+}
+
+int soma2(int a, int b){
+    return a+b;
+}
+
+int operacaoX(int a, int b){
+    return (a+b) * (a+b);
+}
+
+int operacaoY(int a, int b){
+    if(a>b){
+        return a;
+    }
+    return b;
+}
+
+void operacaoVetorialGenerica(int *a, int *b, int *c, int tamanho,int operacao(int , int)){
+
+    for(int i =0; i< tamanho; ++i){
+        c[i] = operacao(a[i], b[i]);
+
+    }
+
+}
+
+int aula_29_12_21(){
+    int x[3] = {1,2,3}, y[3] = {4, 5, -6}, z[3];
+
+    operacaoVetorialGenerica(x,y,z,3, prod2);  //produtoInterno(x,y,z,3);
+
+    printf("%d %d %d\n", z[0], z[1], z[2]);
+
+    operacaoVetorialGenerica(x,y,z,3, soma2);   //  somaVetorial(x,y,z,3);
+
+    printf("%d %d %d\n", z[0], z[1],z[2]);
+
+    operacaoVetorialGenerica(x,y,z,3,operacaoX); // operacaoXVetorial(x,y,z,3);
+
+    printf("%d %d %d\n", z[0], z[1],z[2]);
+
+    operacaoVetorialGenerica(x,y,z,3,operacaoY);
+
+    printf("%d %d %d\n", z[0], z[1],z[2]);
+
+
+    return 0;
+}
+
+int aula_29_12_21_parte_2(){
+    int a[3] = {1, 2, 3};
+    double x[3] = {48974894489.5, 6.7, 8.9};
+
+    int *pa = a;
+    double *px = x;
+
+    printf("%d %lf\n", *pa, *px);
+
+    pa = x;
+
+    printf("%d %lf\n", pa, px);
+    printf("%d %lf\n", *pa, *px);
+
+    void *p = x;
+
+    // Não funciona: printf("%lf\n", *p);
+
+    px = p;
+    printf("%lf\n", *px);
+
+    printf("%lf\n", *((double *)p));
+
+    printf("%p\n", ((int *)p));
+    printf("%p\n", ((double *)p));
+    printf("%p\n", ((char *)p));
+
+
+    return 0;
+}
+
+int criterioOrdenacao(const void *x, const void *y){
+   //Se a ordem correta for primeiro o a e depois o b, retorna qualquer valor negativo
+   //Se a ordem correta for primeiro o a e depois o a, retorna qualquer valor positivo
+    //Se a ordem correta for tanto faz pois a e b são equivalentes, retorna 0
+
+    //printf("%p %p\n", x, y);
+
+    int a = *((const int *)x), b = *((const int *)y);
+
+
+    if(a < b){
+        return -1;
+    }
+    if(a > b){
+        return 1;
+    }
+
+    return 0;
+
+}
+
+int ordemDecrescente(const void  *x, const void *y){
+    int a = *((const int *)x), b = *((const int  *)y);
+    if(a < b){
+        return -1;
+    }
+    if(a > b){
+        return 1;
+    }
+
+    return 0;
+
+}
+
+int funcaoQsort(){
+    int a[10] = {1,3,5,7,9,0,8,6,4,2};
+
+    for(int i = 0; i< 10; ++i){
+        printf("%d: %p\n", i &a[i]);
+    }
+    puts("------------------");
+
+    qsort(a, 10, 4, criterioOrdenacao);
+
+    for(int i = 0; i < 10; ++i){
+        printf("%d: %d\n", i, a[i]);
+    }
+    puts("-----------------");
+
+    qsort(a, 10, 4, ordemDecrescente);
+
+    for(int i = 0; i < 10; ++i){
+        printf("%d: %d\n", i, a[i]);
+    }
+
+
+    return 0;
+}
 
 int main() {
-    return aula24_12_21();
+    return funcaoQsort();
 
 
 }
