@@ -766,13 +766,6 @@ int desafio1173(){
     return 0;
 }
 
-int desafio1175(){
-
-
-
-    return 0;
-}
-
 int exemplos_entradas(){
     char nome_completo[101];
     //scanf("%[3A-Za-z ]", nome_completo);
@@ -991,17 +984,6 @@ int desafio1020(){
     return 0;
 }
 
-int desafio1222(){
-    char vetor[50];
-
-    scanf("%s");
-
-
-
-
-    return 0;
-}
-
 int aula24_12(){
     int x = -2147483647;
     int y = x + 1;
@@ -1057,6 +1039,58 @@ int aula24_12_21(){
 
     return 0;
 }
+
+int aula_27_12(){
+    int a;
+    long long b = 123456789123545ll;
+    double c;
+    char d;
+
+    printf("a: %lu %p\n", sizeof(a), &a);
+    printf("b: %lu %p\n", sizeof(b), &b);
+    printf("c: %lu %p\n", sizeof(c), &c);
+    printf("d: %lu %p\n", sizeof(d), &d);
+
+    //scanf("%d", &a);
+
+    char e[10];
+
+    printf("e: %lu %p\n", sizeof(e), e);
+    printf("e[0]: %lu %p\n", sizeof(e[0]), &e[0]);
+    printf("e[1]: %lu %p\n", sizeof(e[1]), &e[1]);
+    printf("e[2]: %lu %p\n", sizeof(e[2]), &e[2]);
+
+    printf("e[90]: %lu %p\n", sizeof(e[90]), &e[90]);
+
+    //scanf("%d %s", %a, e);
+
+    e[99] = 111;
+
+    int *pa = &a;
+    // ruim: int xa = &a;
+
+    a = 22;
+
+    scanf("%d", pa);
+
+    printf("a: %d %d\n", a, *pa);
+
+    /*vao dar ruim
+     int *x = (int *) 0x12345;
+     printf("%d\n", *x);
+     */
+
+    /* vai da ruim
+     pa = (int *) &b;
+     printf("%d\n", *pa);
+     
+     */
+
+
+
+    return 0;
+}
+
 
 void produtoInterno(int *a, int *b, int *c, int tamanho){
 
@@ -1226,8 +1260,246 @@ int funcaoQsort(){
     return 0;
 }
 
+int ordem(const void*x, const void*y){
+    int a = *((const int*)x), b = *((const int*)y);
+    if(a<b)
+        return -1;
+    if(a>b)
+        return 1;
+    return 0;
+}
+
+
+int problema2445(){
+    int n;
+    scanf("%d", &n);
+
+    int v[n];
+    for (int i = 0; i < n; ++i) {
+        scanf("%d", &v[i]);
+    }
+
+    qsort(v,n,4,ordem);
+    for(;n>2;){
+        int soma=0;
+        for (int j = 0; j<n; ++j){
+            soma +=v[j];
+        }
+        if(v[n-1]>=soma){
+            --n;
+        } else{
+            printf("%d\n",n);
+            return 0;
+        }
+    }
+    if(n == 2){
+        printf("0\n");
+    }
+
+    return 0;
+}
+
+int problema1259(){
+    int n;
+    int vet[n];
+    scanf("%d", &n);
+    for(int i = 0; i < n;++i){
+
+        scanf("%d", &vet[i]);
+    }
+    qsort(vet,n,sizeof(int),ordem);
+    for (int i = 0; i < n; ++i) {
+        printf("%d", vet[i]);
+    }
+
+
+    return 0;
+}
+
+int problema1171(){
+    int n, vect[n], vectOld[n];
+
+    scanf("%d", &n);
+
+    for(int i = 0; i< n; ++i){
+        scanf("%d", &vect[i]);
+    }
+    for(int j = 0; j< n; ++j){
+        vectOld[j]= vect[j];
+    }
+
+    qsort(vect,n,sizeof(int),ordem);
+
+    for(int k = 0; k< n; ++k){
+        printf("%d\n", vect[k]);
+    }
+    puts("");
+
+    for(int l = 0; l< n; ++l){
+        printf("%d\n", vectOld[l]);
+    }
+
+
+    return 0;
+}
+
+/*#include <stdio.h>
+#include <math.h>
+
+int main (){
+
+  int a, b, c;
+
+  scanf("%d %d %d", &a, &b, &c);
+
+  if (a <= b && b <= c){
+    printf("%d\n", a);
+    printf("%d\n", b);
+    printf("%d\n", c);
+  }
+  else{
+
+    if (a <= c && c <= b){
+      printf("%d\n", a);
+      printf("%d\n", c);
+      printf("%d\n", b);
+    }
+    else{
+
+      if (b <= a && a <= c){
+        printf("%d\n", b);
+        printf("%d\n", a);
+        printf("%d\n", c);
+      }
+      else{
+
+        if (b <= c && c <= a){
+          printf("%d\n", b);
+          printf("%d\n", c);
+          printf("%d\n", a);
+        }
+        else{
+
+          if (c <= a && a <= b){
+            printf("%d\n", c);
+            printf("%d\n", a);
+            printf("%d\n", b);
+          }
+          else{
+            if (a == b && b == c){
+              printf("%d\n", a);
+              printf("%d\n", b);
+              printf("%d\n", c);
+            }
+            else{
+              printf("%d\n", c);
+              printf("%d\n", b);
+              printf("%d\n", a);
+            }
+          }
+        }
+      }
+    }
+
+}
+  printf("\n");
+  printf("%d\n", a);
+  printf("%d\n", b);
+  printf("%d\n", c);
+}
+*/
+
+int problema1023(){
+    int n, x[10], y[200],mediaCasa[n];
+    double consutotal = 0, consumopessoa = 0, media = 0;
+    for(;;){
+        scanf("%d", &n);
+        if(n == 0){
+            break;
+        }else{
+            for(int i = 0; i< n; ++i){
+                scanf("%d %d", &x[i], &y[i]);
+                mediaCasa[i] = (y[i] / x[i]);
+
+            }
+            for(int i = 0; i< n;++i){
+                consutotal += y[i];
+            }
+            for(int i = 0; i<n; ++i){
+                consumopessoa += x[i];
+            }
+
+            media = consutotal/consumopessoa;
+
+            printf("%lf\n", media);
+            printf("%lf %lf\n", consumopessoa, consutotal);
+
+        }
+    }
+
+    return 0;
+}
+
+
+int teste(){
+    char text[100];
+    int textaux[100];
+    int ascii[255];
+    int n;
+
+    gets(text);
+
+    //char *pont = text
+
+    for(int i = 0; i<255; ++i){
+        ascii[i] = 0;
+    }
+    for(int i = 0; i<strlen(text); ++i){
+        textaux[i] = text[i];
+    }
+    for(int i = 0; i< strlen(text); ++i){
+        if(textaux[i] != 32){
+            ascii[textaux[i]]++;
+        }
+    }
+
+    for(int i=0; i<255;++i){
+        if(ascii[i]>=1){
+            printf("\nA letra %c repetiu %d vezes na frase que voce escreveu!\n", i, ascii[i]);
+        }
+    }
+
+    return 0;
+}
+
+#include <stdio.h>
+
+int desafiovjud()
+{
+    int A, B, C;
+
+    for(;;){
+        scanf("%d %d %d", &A,&B,&C);
+        if(A>=0 && A<=100 && B>=0 && B<=100 && C>=0 && C<=100){
+            break;
+        }
+    }
+    if(A == 5 && B == 7 && C == 5){
+        puts("YES");
+    }else if(A == 5 && B == 5 && C == 7){
+        puts("YES");
+    }else if(A == 7 && B == 5 && C == 5){
+        puts("YES");
+    }else{
+        puts("NO");
+    }
+
+    return 0;
+}
+
+
 int main() {
-    return funcaoQsort();
+    return teste();
 
 
 }
