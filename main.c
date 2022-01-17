@@ -1472,7 +1472,7 @@ int teste(){
     return 0;
 }
 
-#include <stdio.h>
+
 
 int desafiovjud()
 {
@@ -1497,9 +1497,45 @@ int desafiovjud()
     return 0;
 }
 
+int desafioF(){
+    char letter[11], newLetter[11], backspace[1];
+
+    scanf("%s", letter);
+
+    for(int i = 0; i< 11; ++i){
+        int ret = strcmp(letter[i], "B");
+        if(ret != 0){
+            newLetter[i] = letter[i];
+        }
+    }
+
+    printf("%s", newLetter);
+    return 0;
+}
+
+int desafioG()
+{
+    int A, B, K, count = 0;
+
+    for(;;){
+        scanf("%d %d %d", &A, &B, &K);
+        if(A>=0 && B>=0 && B>=A && K>=0){
+            break;
+        }
+    }
+    for(int i = A; i <= B;++i){
+        if(A % K == 0){
+            count  += 1;
+        }
+    }
+    printf("%d", count);
+
+    return 0;
+}
+
 
 int main() {
-    return teste();
+    return desafioG();
 
 
 }
