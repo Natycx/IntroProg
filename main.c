@@ -1532,6 +1532,159 @@ int desafioG()
 
     return 0;
 }
+int medalhas[500][3];
+char nome[500][1123];
+
+int cmp_indice(const void *a, const void *b){
+    const int *x = a, *y = b;
+
+    //printf("%p %d \t %p %d\n", x, *x, y, *y);
+
+    for(int i = 0; i < 3; ++i){
+        if(medalhas[*x][i] >medalhas[*y][i]){
+            return -1;
+        }
+        if(medalhas[*x][i] <medalhas[*y][i]){
+            return 1;
+        }
+    }
+
+    return strcmp(nome[*x], nome[*y]);
+    /*
+    if(medalhas[*x][0] >medalhas[*y][0]){
+        return -1;
+    }
+    if(medalhas[*x][0] <medalhas[*y][0]){
+        return 1;
+    }
+    if(medalhas[*x][1] >medalhas[*y][1]){
+        return -1;
+    }
+    if(medalhas[*x][1] <medalhas[*y][1]){
+        return 1;
+    }
+    if(medalhas[*x][2] >medalhas[*y][2]){
+        return -1;
+    }
+    if(medalhas[*x][2] <medalhas[*y][2]){
+        return 1;
+    }
+    */
+    /*
+    int *v = medalhas[*x], *u = medalhas[*y];
+
+    if(u[0]> v[0]){
+        return -1;
+    }
+    if(u[0]< v[0]){
+        return 1;
+    }
+    */
+    /*
+    if(medalhas[*x])
+
+    if(x[0]> y[0]){
+        return -1;
+    }
+    if(x[0]< y[0]){
+        return 1;
+    }
+    if(x[1]> y[1]){
+        return -1;
+    }
+    if(x[1]< y[1]){
+        return 1;
+    }
+    if(x[2]> y[2]){
+        return -1;
+    }
+    if(x[2]< y[2]){
+        return 1;
+    }
+    */
+}
+
+int aula19_01(){
+    int n;
+    scanf("%d", &n);
+
+    int indice[n];
+
+    for(int i = 0;i < n; ++i){
+        scanf("%s%d%d%d", nome[i],&medalhas[i][0], &medalhas[i][1], &medalhas[i][2]);
+        indice[i] = i;
+    }
+
+    //printf("sizeof(medalhas[0]): %lu\n", sizeof(medalhas[0]));
+    qsort(indice, n, sizeof(indice[0]), cmp_indice);
+
+    for(int i = 0;i < n; ++i){
+        //printf("%d: %d\n", i, indice[i]);
+        printf("%s %d %d %d\n", nome[indice[i]],medalhas[indice[i]][0], medalhas[indice[i]][1], medalhas[indice[i]][2]);
+    }
+
+    return 0;
+}
+
+typedef int Inteiro;
+typedef char Caracter;
+typedef void Vazio;
+
+
+
+typedef struct Pais{
+    int ouro, prata, bronze;
+    char nome[1123];
+}Pais;
+
+int cmp_pais(const void *a, const void *b){
+    const struct Pais *x = a, *y = b;
+
+    if((*x).ouro > (*y).ouro){
+        return -1;
+    }
+    if((*x).ouro < (*y).ouro){
+        return 1;
+    }
+    if(x->prata > y->prata){
+        return -1;
+    }
+    if(x->prata < y->prata){
+        return 1;
+    }
+    if(x->bronze > y->bronze){
+        return -1;
+    }
+    if(x->bronze < y->bronze){
+        return 1;
+    }
+
+    return strcmp(x->nome, y->nome);
+}
+
+int aula19_01_22()
+{
+    int n;
+    scanf("%d", &n);
+
+    struct Pais paises[n];
+
+    for(int i= 0; i< n; ++i){
+        scanf("%s%d%d%d", paises[i].nome, &paises[i].ouro, &paises[i].prata, &paises[i].bronze);
+    }
+
+    //printf("sizeof(paises[0]): %lu\n", sizeof(paises[0]));
+
+
+    qsort(paises, n, sizeof(paises[0]), cmp_pais);
+
+    for(int i= 0; i< n; ++i){
+        printf("%s %d %d %d\n", paises[i].nome, paises[i].ouro, paises[i].prata, paises[i].bronze);
+    }
+
+    return 0;
+}
+
 
 
 int main() {
