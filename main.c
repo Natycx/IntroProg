@@ -1532,6 +1532,7 @@ int desafioG()
 
     return 0;
 }
+const int max_paises = 81234;
 int medalhas[500][3];
 char nome[500][1123];
 
@@ -1685,10 +1686,113 @@ int aula19_01_22()
     return 0;
 }
 
+char linhas[5123][5123];
 
+int desafioA(){
+    int n;
+    scanf("%d", &n);
+
+
+
+    for(int i = 0; i < n; ++i){
+        scanf("%s", linhas[i]);
+    }
+
+    int maximo = 0;
+    for (int (i) = 0; (i) < n; ++(i)) {
+        int iguais = 0;
+        for (int j = 0; j < n; ++j) {
+            if(strcmp(linhas[i], linhas[j]) == 0){
+                ++iguais;
+            }
+        }
+        if(iguais > maximo){
+            maximo = iguais;
+        }
+    }
+    // Aqui são feitas no total n^2 chamadas a função strcmp
+    printf("%d\n", maximo);
+
+
+    return 0;
+}
+
+int cmp(const void *a, const void  *b){
+    const int *x = a, *y = b;
+    return strcmp(linhas[*x],linhas[*y]);
+}
+
+int desafioA2(){
+    int n;
+    scanf("%d", &n);
+
+    for(int i = 0; i < n; ++i){
+        scanf("%s", linhas[i]);
+    }
+
+    qsort(linhas, n, sizeof(linhas[0]), cmp);
+    // n * log2(n) chamadas a função cmp
+
+    int iguais = 1, maximo = 0;
+
+    for(int i = 1; i < n; ++i){
+        if(strcmp(linhas[i], linhas[i - 1]) == 0){
+            ++iguais;
+        } else{
+            if(iguais > maximo){
+                maximo = iguais;
+            }
+            iguais = 1;
+        }
+    }
+    // Aqui são feitas no total n +n * log2(n) chamadas a função strcmp
+
+    if(iguais > maximo){
+        maximo = iguais;
+    }
+    printf("%d\n", maximo);
+
+    return 0;
+}
+
+int desafioA3(){
+    int n;
+    scanf("%d", &n);
+
+    int indice[n];
+
+    for(int i = 0; i < n; ++i){
+        scanf("%s", linhas[i]);
+        indice[i] = i;
+    }
+
+    qsort(indice, n, sizeof(indice[0]), cmp);
+    // n * log2(n) chamadas a função cmp
+
+    int iguais = 1, maximo = 0;
+
+    for(int i = 1; i < n; ++i){
+        if(strcmp(linhas[indice[i]], linhas[indice[i - 1]]) == 0){
+            ++iguais;
+        } else{
+            if(iguais > maximo){
+                maximo = iguais;
+            }
+            iguais = 1;
+        }
+    }
+    // Aqui são feitas no total n +n * log2(n) chamadas a função strcmp
+
+    if(iguais > maximo){
+        maximo = iguais;
+    }
+    printf("%d\n", maximo);
+
+    return 0;
+}
 
 int main() {
-    return desafioG();
+    return desafioA();
 
 
 }
