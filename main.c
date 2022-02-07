@@ -1791,6 +1791,241 @@ int desafioA3(){
     return 0;
 }
 
+int aula31_01_22(){
+    int a[10];
+    int *p = malloc(sizeof(int) * 10);
+
+    for(int i = 0; i< 10;++i){
+        p[i] = i*i;
+    }
+
+    //p = realloc(p, sizeof(int) * 100001);
+    p = malloc(sizeof(int) * 100001);
+
+    p[100000] = 3;
+
+    printf("%d\n", p[9]);
+
+    free(p);
+
+
+    return 0;
+}
+
+int* multiplica2(int *v, int tamanho){
+    //int resultado[tamanho];
+    int *resultado = malloc(sizeof(int) * tamanho);
+    for(int i = 0; i< tamanho; ++i){
+        resultado[i] = v[i] * 2;
+    }
+
+    printf("resultado : %p\n", resultado);
+    return resultado;
+}
+
+int aula_31_01()
+{
+    int a[] = {1, 2, 3, 4, 5};
+
+    int *p = multiplica2(a, 5);
+
+    printf("p: %p\n", p);
+    printf("%d\n", p[3]);
+
+    free(p);
+
+
+    return 0;
+}
+
+int f(){
+    int x = -22;
+
+    return x;
+}
+
+int aula31_01_2()
+{
+    int x; // &x é o endereço de memoria de x
+    int a[10]; // a é o endereço de memoria onde começa uma sequencia de 10 inteiros
+
+    int *p = a;
+
+    p = (int *) 0xa1b2c3d4;
+
+    printf("%p\n", p);
+    //printf("%d\n",*p);
+
+
+
+    p = malloc(sizeof(int));//int x;
+    *p = 22;     // x = 22
+
+    printf("%p\n", p);
+    printf("%d\n",*p);
+    free(p);
+
+
+    p = malloc(sizeof(int) * 10); // int a[10];
+    p[0] = p[4] = 30;        // a[4] = 30
+    printf("%p\n", p);
+    printf("%d %d\n",*p, p[4]);
+    free(p);
+
+
+
+    return 0;
+}
+
+int grande_pra_caramba[112345678];
+
+int abcd = 456;
+
+int aula31_01_03()
+{
+    int grande_pra_caramba_e_dificil_de_alocar[112345678];
+
+    //printf("%d\n", x)
+    int x;
+
+    scanf("%d", &x);
+
+    if(x % 2){
+        puts("O numero é impar!");
+
+    } else{
+        int y = x % 4;
+
+        if(y){
+            puts("O número é par simples");
+        } else {
+            puts("O número é par duplo");
+        }
+    }
+
+    return 0;
+}
+
+int aula02_02(){
+    int cmp(const void * a, const void *b){
+        printf("a : %p \t \t b: %p \n", a,b);
+
+        const char **x = a, **y = b;
+
+        return strcmp(*x,*y);
+    }
+
+        int n;
+
+        scanf("%d", &n);
+
+        //char nomes[n][1123];
+
+        char **nomes = malloc(n * sizeof(char *));
+
+        printf("nomes : %p\n", nomes);
+
+        for(int i = 0; i< n; ++i){
+            nomes[i] = malloc(1123 * sizeof(char));
+            scanf("%[^\n]", nomes[i]);
+
+            printf("nomes[%d] : %p\n", i, nomes[i]);
+        }
+        for(int i = 0; i< n; ++i){
+            printf("&nomes[%d] : %p\n", i, &nomes[i]);
+        }
+
+        printf("sizeof(nomes[0] : %lu\n", sizeof(nomes[0]));
+
+        qsort(nomes, n ,sizeof(nomes[0]), cmp);
+
+        for(int i = 0; i< n; ++i){
+            printf("%s\n", nomes[i]);
+        }
+
+        return 0;
+
+}
+
+int aula02_02_22(){
+    double *a = malloc(10 * sizeof(double));
+
+    a[0] = 1.23;
+    a[5] = 45.6;
+
+    free(a);
+
+    int *b[10];
+
+    for(int i = 0; i< 10; ++i){
+        b[i] = realloc(b[i], 5* sizeof(int));
+    }
+
+    b[4][5] = 6;
+    b[1][1] = 0;
+    b[9][8] = 7;// Não pode! Não temos mais tantas colunas!
+
+    for(int i = 0; i< 10; ++i){
+        b[i] = realloc(b[i], (i + 1)* sizeof(int));
+    }
+    for(int i = 0; i< 10;++i){
+        free(b[i]);
+    }
+
+    malloc(10 * sizeof(int *));
+
+    int **c = malloc(10 * sizeof(int *));
+
+
+    //c[0] = 123;
+    c[0] = malloc(5 * sizeof(int));
+    c[0][3] = 55;
+    free(c[0]);
+
+    c[1] = malloc(7 * sizeof(int));
+    c[1][6] = 22;
+    free(c[1]);
+
+    for(int i = 0; i< 10; ++i){
+        c[i] = malloc(5 * sizeof(int));
+    }
+
+    c = realloc(c, 100 * sizeof(int));
+
+    for(int i = 0; i< 100; ++i){
+        c[i] = malloc(50 * sizeof(int));
+    }
+    for(int i = 0; i< 100; ++i){
+        free(c[i]);
+    }
+
+    free(c);
+
+    int ***d = malloc(10 * sizeof(int **));
+
+    for(int i = 0; i< 10; ++i){
+        d[i] = malloc(20 * sizeof(int *));
+
+        for(int j = 0; j< 20; ++j){
+            d[i][j] = malloc(30*sizeof(int));
+
+        }
+    }
+
+
+    d[4][15][26] = 7890;
+
+    for(int i = 0; i< 10; ++i){
+        for(int j = 0; j< 10; ++j){
+            free(d[i][j]);
+        }
+        free(d[i]);
+    }
+    free(d);
+
+    return 0;
+}
+
 int main() {
     return desafioA();
 
