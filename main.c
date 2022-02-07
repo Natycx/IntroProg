@@ -2026,6 +2026,58 @@ int aula02_02_22(){
     return 0;
 }
 
+int aula07_02_22()
+{
+    FILE *meu_arquivo = fopen("arquivo1.txt", "r");
+    if(meu_arquivo == NULL){
+        printf("ERRO NA ABERTURA DO ARQUIVO! Saindo....")
+        return 0;
+    }
+
+    meu_arquivo = fopen("arquivo1.txt", "w");
+
+    fprintf(meu_arquivo,"O Meu nome é natalia.\n");
+    fprintf(meu_arquivo,"Eu sou do Rio de janeiro.\n");
+
+    fclose(meu_arquivo);
+
+    meu_arquivo = fopen("arquivo1.txt", "r");
+
+    char c;
+    char s[11], t[112];
+
+    fseek(meu_arquivo, 7, SEEK_CUR);
+    fseek(meu_arquivo, 7, SEEK_CUR);
+
+    fscanf(meu_arquivo, "%c%s%[^\n]", &c, s, t);
+
+    fclose(meu_arquivo);
+
+    printf("c = %c\n", c);
+    printf("s = %s\n", s);
+    printf("t = %s\n", t);
+
+
+    meu_arquivo = fopen("arquivo1.txt", "a");
+
+    fprintf(meu_arquivo, "%s\n", t);
+
+    fclose(meu_arquivo);
+
+    meu_arquivo = fopen("arquivo1.txt", "r+");
+
+    fscanf(meu_arquivo, "%[^\n]", t);
+
+    printf("t = %s\n", t);
+
+    fprintf(meu_arquivo, "testando r+\n");
+    fclose(meu_arquivo);
+
+
+    return 0;
+}
+
+
 int main() {
     return desafioA();
 
