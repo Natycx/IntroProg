@@ -1906,14 +1906,15 @@ int aula31_01_03()
     return 0;
 }
 
+
+int cmp_teste(const void * a, const void *b){
+    printf("a : %p \t \t b: %p \n", a,b);
+
+    const char **x = a, **y = b;
+
+    return strcmp(*x,*y);
+}
 int aula02_02(){
-    int cmp(const void * a, const void *b){
-        printf("a : %p \t \t b: %p \n", a,b);
-
-        const char **x = a, **y = b;
-
-        return strcmp(*x,*y);
-    }
 
         int n;
 
@@ -1937,7 +1938,7 @@ int aula02_02(){
 
         printf("sizeof(nomes[0] : %lu\n", sizeof(nomes[0]));
 
-        qsort(nomes, n ,sizeof(nomes[0]), cmp);
+        qsort(nomes, n ,sizeof(nomes[0]), cmp_teste);
 
         for(int i = 0; i< n; ++i){
             printf("%s\n", nomes[i]);
@@ -2030,7 +2031,7 @@ int aula07_02_22()
 {
     FILE *meu_arquivo = fopen("arquivo1.txt", "r");
     if(meu_arquivo == NULL){
-        printf("ERRO NA ABERTURA DO ARQUIVO! Saindo....")
+        printf("ERRO NA ABERTURA DO ARQUIVO! Saindo....");
         return 0;
     }
 
@@ -2072,6 +2073,111 @@ int aula07_02_22()
 
     fprintf(meu_arquivo, "testando r+\n");
     fclose(meu_arquivo);
+
+
+    return 0;
+}
+
+typedef struct Aluno{
+    char nomes[112];
+    double notas[2];
+
+};
+
+int cmp_media(const void *a, const void *b){
+    const struct Aluno *x = a, *y = b
+}
+
+int aula09_02(){
+    int n;
+    scanf("%d", n);
+
+    struct Aluno turma[n];
+
+    for (int i = 0; i < n; ++i) {
+        scanf("%[^,],%lf,%lf", &turma[i].nomes, &turma[i].notas[0], &turma[i].notas[1]);
+
+    }
+
+    qsort(turma, n, sizeof(turma[0]), cmp_media);
+
+
+
+
+
+    return 0;
+}
+typedef struct Aluno1{
+    char nomes[112];
+    double notas[2];
+
+}Aluno1;
+
+int cmp_media_12(const void *a, const void *b){
+    const Aluno1 *x = a, *y = b;
+
+    double media_x = (x->notas[0] + x->notas[1])/2;
+    double media_y = (y->notas[0] + y->notas[1])/2;
+
+    if(media_x > media_y){
+        return -1;
+    }
+    if(media_x < media_y){
+        return 1;
+    }
+    return strcmp(x->nomes, y->nomes);
+
+}
+
+int aula_09_02(){
+    FILE *dados = fopen("dados.txt", "r+");
+
+    /*for(;;){
+        char c;
+        fscanf(dados,"%c", &c);
+        if(c == '\n'){
+            break;
+        }
+    }*/
+
+    fscanf(dados,"%*[^\n]\n");
+
+    long int pos_linha2 = ftell(dados);
+
+    int n = 0;
+
+    //fscanf(dados,"%d", &c);
+
+
+    Aluno1 *turma = NULL;//malloc(n * sizeof(Aluno))
+
+    for (int i = 0;;++i) {
+        turma = realloc(turma, (n + 1) * sizeof(Aluno1));
+
+        if(fscanf(dados," %[^,],%lf,%lf", turma[i].nomes, &turma[i].notas[0], &turma[i].notas[1]) == EOF){
+            break;
+        }
+
+        ++n;
+
+    }
+
+    qsort(turma, n, sizeof(turma[0]), cmp_media_12);
+
+    //fseek(dados, 0, SEEK_SET);
+    //fscanf(dados,"%*[^\n]\n");
+
+    fseek(dados, pos_linha2, SEEK_SET);
+
+    //fprintf(dados,"%d\n", n);
+
+    for (int i = 0; i < n; ++i){
+        //printf("%s teve as notas %.2lf, obtendo media %.2lf\n", turma[i].nomes, turma[i].notas[0], turma[i].notas[1]);
+        fprintf(dados,"%s,%.1lf,%.1lf\n",turma[i].nomes, turma[i].notas[0], turma[i].notas[1]);
+    }
+
+
+    fclose(dados);
 
 
     return 0;
