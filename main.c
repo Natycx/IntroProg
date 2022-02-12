@@ -2085,7 +2085,7 @@ typedef struct Aluno{
 };
 
 int cmp_media(const void *a, const void *b){
-    const struct Aluno *x = a, *y = b
+    const struct Aluno *x = a, *y = b;
 }
 
 int aula09_02(){
